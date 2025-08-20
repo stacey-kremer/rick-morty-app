@@ -1,5 +1,4 @@
 // Компонент фильтров поиска персонажей
-
 import { type ChangeEvent } from "react";
 
 type SearchFiltersProps = {
@@ -34,8 +33,8 @@ const SearchFilters = ({
     };
 
   return (
-    <div className="flex flex-col gap-6 max-w-md mx-auto">
-      <div className="flex flex-col">
+    <div className="flex flex-col gap-6 w-full max-w-md mx-auto px-4">
+      <div className="flex flex-col w-full">
         <label className="text-lime-400 font-semibold mb-1">
           Имя персонажа
         </label>
@@ -44,17 +43,17 @@ const SearchFilters = ({
           placeholder="Введите имя персонажа"
           value={searchQuery}
           onChange={handleInputChange(onSearch)}
-          className="p-2 rounded border border-gray-700 bg-black text-green-300 placeholder-green-500 focus:outline-none focus:ring-2 focus:ring-rick-green"
+          className="w-full p-2 rounded border border-gray-700 bg-black text-green-300 placeholder-green-500 placeholder-opacity-50 placeholder:text-sm placeholder:font-normal focus:outline-none focus:ring-2 focus:ring-rick-green"
         />
       </div>
 
-      <div className="flex gap-4">
-        <div className="flex-1 flex flex-col">
+      <div className="flex flex-col sm:flex-row gap-4 w-full">
+        <div className="flex-1 flex flex-col w-full">
           <label className="text-lime-400 font-semibold mb-1">Жив?</label>
           <select
             value={statusFilter}
             onChange={handleSelectChange(onStatusChange)}
-            className="p-2 rounded border border-gray-700 bg-black text-green-300 focus:outline-none focus:ring-2 focus:ring-rick-green"
+            className="w-full p-2 rounded border border-gray-700 bg-black text-green-300 placeholder-green-500 placeholder-opacity-50 placeholder:text-sm placeholder:font-normal focus:outline-none focus:ring-2 focus:ring-rick-green"
           >
             <option value="">Все</option>
             <option value="Alive">Жив</option>
@@ -63,12 +62,12 @@ const SearchFilters = ({
           </select>
         </div>
 
-        <div className="flex-1 flex flex-col">
+        <div className="flex-1 flex flex-col w-full">
           <label className="text-lime-400 font-semibold mb-1">Раса</label>
           <select
             value={speciesFilter}
             onChange={handleSelectChange(onSpeciesChange)}
-            className="p-2 rounded border border-gray-700 bg-black text-green-300 focus:outline-none focus:ring-2 focus:ring-rick-green"
+            className="w-full p-2 rounded border border-gray-700 bg-black text-green-300 placeholder-green-500 placeholder-opacity-50 placeholder:text-sm placeholder:font-normal focus:outline-none focus:ring-2 focus:ring-rick-green"
           >
             <option value="">Все</option>
             <option value="Human">Human</option>
@@ -80,14 +79,14 @@ const SearchFilters = ({
         </div>
       </div>
 
-      <div className="flex flex-col">
+      <div className="flex flex-col w-full">
         <label className="text-lime-400 font-semibold mb-1">Эпизод</label>
         <input
           type="text"
           placeholder="Введите номер эпизода"
           value={episodeQuery}
           onChange={handleInputChange(onEpisodeChange)}
-          className="p-2 rounded border border-gray-700 bg-black text-green-300 placeholder-green-500 focus:outline-none focus:ring-2 focus:ring-rick-green"
+          className="w-full p-2 rounded border border-gray-700 bg-black text-green-300 placeholder-green-500 placeholder-opacity-50 placeholder:text-sm placeholder:font-normal focus:outline-none focus:ring-2 focus:ring-rick-green"
         />
       </div>
     </div>
