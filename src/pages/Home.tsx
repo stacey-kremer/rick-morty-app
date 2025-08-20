@@ -2,6 +2,7 @@
 // Загружает всех персонажей с API и хранит их в state
 // Фильтрует персонажей по имени, статусу, расе и эпизоду
 // Отображает фильтры, Loader при загрузке и карточки персонажей после фильтрации
+// При обновлении страницы фильтры сохраняют своё состояние
 
 import { useEffect, useState } from "react";
 import CharacterCard from "../components/CharacterCard";
@@ -22,10 +23,19 @@ const Home = () => {
   const [filteredCharacters, setFilteredCharacters] = useState<Character[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const [statusFilter, setStatusFilter] = useState("");
-  const [speciesFilter, setSpeciesFilter] = useState("");
-  const [episodeQuery, setEpisodeQuery] = useState("");
+  // Инициализация из localStorage
+  const [searchQuery, setSearchQuery] = useState(
+    () => localStorage.getItem("searchQuery") || ""
+  );
+  const [statusFilter, setStatusFilter] = useState(
+    () => localStorage.getItem("statusFilter") || ""
+  );
+  const [speciesFilter, setSpeciesFilter] = useState(
+    () => localStorage.getItem("speciesFilter") || ""
+  );
+  const [episodeQuery, setEpisodeQuery] = useState(
+    () => localStorage.getItem("episodeQuery") || ""
+  );
 
   const fetchAllCharacters = async () => {
     setLoading(true);
@@ -55,6 +65,24 @@ const Home = () => {
     fetchAllCharacters();
   }, []);
 
+  // Сохраняем изменения фильтров в localStorage
+  useEffect(() => {
+    localStorage.setItem("searchQuery", searchQuery);
+  }, [searchQuery]);
+
+  useEffect(() => {
+    localStorage.setItem("statusFilter", statusFilter);
+  }, [statusFilter]);
+
+  useEffect(() => {
+    localStorage.setItem("speciesFilter", speciesFilter);
+  }, [speciesFilter]);
+
+  useEffect(() => {
+    localStorage.setItem("episodeQuery", episodeQuery);
+  }, [episodeQuery]);
+
+  // Фильтрация
   useEffect(() => {
     let filtered = characters;
 
